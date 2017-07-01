@@ -22,7 +22,7 @@ axios.interceptors.request.use((config) => {
   console.log('request-'+error)
   return Promise.reject(error);
 });
-//code非正常状态码处理
+//code错误状态码处理
 /*axios.interceptors.response.use((res) =>{
   if(res.data.code != okCode){
     return Promise.reject(res);

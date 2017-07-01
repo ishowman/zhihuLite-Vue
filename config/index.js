@@ -28,13 +28,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      //'/adminsite':{
       '/api':{
-        //target: 'http://testm.51xnb.cn',
-        target: 'https://news-at.zhihu.com',
+        target: 'http://news-at.zhihu.com',
         changeOrigin: true,
         pathRewrite: {
-          //'^/adminsite': '/adminsite'
           '^/api': '/api/4'
         }
       }

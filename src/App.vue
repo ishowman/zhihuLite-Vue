@@ -1,19 +1,19 @@
 <template>
   <div id="app" style="height: 100%">
-    <x-header style="height: 50px;">zhihuLite
-      <x-icon slot="overwrite-left" type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;" @click="ctrDrawer"></x-icon>
+    <x-header style="height: 50px;background: #028fd6;">zhihuLite
+      <x-icon slot="overwrite-left" type="navicon" size="36" style="fill:#fff;position:relative;top:-7px;left:-8px;" @click="ctrDrawer"></x-icon>
     </x-header>
-    <drawer :show.sync="isShow" show-mode="overlay" style="height: calc(100% - 50px);">
+    <drawer :show.sync="isShow" show-mode="overlay" style="height: calc(100% - 50px);"> <!-- :show.sync什么作用 -->
       <ul slot="drawer" style="" id="sideBar">
         <!--<li>drawer text1</li>
         <li>drawer text2</li>
         <li>drawer text3</li>
         <li>drawer text4</li>
         <li>drawer text5</li>-->
-        <li v-for="(item,index) in themeLists.others" @click="$router.push('/news')">{{item.name}}</li>
+        <li v-for="(item,index) in themeLists.others" @click="$router.push('/news/'+item.id)" v-on:click="ctrDrawer">{{item.name}}</li>
       </ul>
       <div slot="default">
-        <keep-alive>
+        <keep-alive exclude="news">
           <router-view></router-view>
         </keep-alive>
       </div>
@@ -34,7 +34,6 @@
     methods: {
       ctrDrawer() {
         this.isShow = !this.isShow;
-        console.log(this.themeLists)
       }
     },
     created() {
