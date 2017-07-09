@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home'
-import news from '@/components/news'
+import themeView from '@/components/themeView'
 import article from '@/components/article'
 import comment from '@/components/comment'
 Vue.use(Router)
@@ -10,13 +10,17 @@ export default new Router({
   routes: [
     {
       path: '/',
+      component: home
+    },
+    {
+      path: '/home',
       name: 'home',
       component: home
     },
     {
-      path:'/news/:id',
-      name:'news',
-      component:news
+      path:'/themeView/:id',
+      name:'themeView',
+      component:themeView
     },
     {
       path:'/article/:id',

@@ -5,12 +5,8 @@
     </x-header>
     <drawer :show.sync="isShow" show-mode="overlay" style="height: calc(100% - 50px);"> <!-- :show.sync什么作用 -->
       <ul slot="drawer" style="" id="sideBar">
-        <!--<li>drawer text1</li>
-        <li>drawer text2</li>
-        <li>drawer text3</li>
-        <li>drawer text4</li>
-        <li>drawer text5</li>-->
-        <li v-for="(item,index) in themeLists.others" @click="$router.push('/news/'+item.id)" v-on:click="ctrDrawer">{{item.name}}</li>
+        <li @click="$router.push('/home')"  v-on:click="ctrDrawer">首页</li>
+        <li v-for="(item,index) in themeLists.others" @click="$router.push('/themeView/'+item.id)" v-on:click="ctrDrawer">{{item.name}}</li>
       </ul>
       <div slot="default">
         <keep-alive exclude="news">
