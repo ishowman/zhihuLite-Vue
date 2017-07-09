@@ -20,7 +20,7 @@
                 .catch(err=>console.log(err));
               this.ajax.get('api/story-extra/'+this.$route.params.id)
                 .then(res=>this.comment={...res.data})
-          },
+          }
       }
    }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div id="app" style="height: 100%">
-    <x-header style="height: 50px;background: #028fd6;">zhihuLite
+    <x-header style="height: 48px;background: #028fd6;">zhihuLite
       <x-icon slot="overwrite-left" type="navicon" size="36" style="fill:#fff;position:relative;top:-7px;left:-8px;" @click="ctrDrawer"></x-icon>
     </x-header>
     <drawer :show.sync="isShow" show-mode="overlay" style="height: calc(100% - 50px);"> <!-- :show.sync什么作用 -->
