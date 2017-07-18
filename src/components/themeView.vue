@@ -1,17 +1,22 @@
 <template>
-    <div>
-      <panel :header="header" :list="list" type="1"></panel>
+    <div id="themeView">
+      <!--<p>{{ str | url }}</p>-->
+      <cellbox :editors="msg.editors"></cellbox>
+      <panel :list="list" type="1"></panel>
     </div>
 </template>
 <script>
-  import { Panel,Group,Cell } from 'vux'
+    import { Panel } from 'vux'
+    import cellbox from '@/components/themeEditor' // 引入后记得在components引入
     export default {
         data() {
           return {
-              data:{},
-              header:'主编&nbsp;&nbsp;<img src="https://images.weserv.nl/?url=pic2.zhimg.com/d3b31fa32_m.jpg" class="header-img"/>',
-              //header:'<group><cell title="this is title" value=" I value"></cell></group>',
-              list:[]
+              msg:{
+                  'hip': 'hop'
+              },
+              list:[],
+              boolean:[true, false],
+              str: 'http://pic1.zhimg.com/0a6456810_m.jpg'
           }
         },
         watch:{
@@ -20,36 +25,27 @@
           }*/
           '$route': 'getData'
         },
-        created() {
+        activated() {
           this.getData();
         },
         methods: {
           getData() {
             this.ajax.get('api/theme/'+this.$route.params.id)
               .then(res=>{
-                  this.data = {...res.data};
-                  for(var item of res.data.stories){
+                  this.msg = {...res.data};
+                  /*for(var item of res.data.stories){
 
-                  }
+                  }*/
               })
               .catch(err=>console.log(err));
-          },
-          print() {
-            console.log(this.data)
           }
         },
         components: {
           Panel,
-          Group,
-          Cell
+          cellbox
         }
     }
 </script>
 <style lang="less">
-  .header-img{
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-    border-radius: 50%;
-  }
+
 </style>

@@ -4,6 +4,7 @@ import home from '@/components/home'
 import themeView from '@/components/themeView'
 import article from '@/components/article'
 import comment from '@/components/comment'
+import editor from '@/components/editor'
 Vue.use(Router)
 
 export default new Router({

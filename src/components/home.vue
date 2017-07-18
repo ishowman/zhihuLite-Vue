@@ -14,7 +14,7 @@
               data: {},
               imgList:[],
               boolean:[true,false],
-              newsList:[]
+              newsList:[],
           }
       },
       activated() {
