@@ -20,7 +20,6 @@
         data() {
             return {
                 editorList : this.editors,
-                num : 1
             }
         },
         activated() {
