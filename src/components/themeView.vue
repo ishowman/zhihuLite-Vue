@@ -8,7 +8,6 @@
 <script>
     import { Panel } from 'vux'
     import cellbox from '@/components/themeEditor' // 引入后记得在components引入
-    import { imgUrl } from '@/common/common'    
     export default {
         data() {
           return {
@@ -36,7 +35,7 @@
                 for(var item of res.data.stories){
                   this.list.push(
                     {
-                      src: item.images?imgUrl(item.images[0]):'http://via.placeholder.com/60x60', // 正常要展示的图
+                      src: item.images?this.imgFilter(item.images[0]):'http://via.placeholder.com/60x60', // 正常要展示的图
                       fallbackSrc: 'http://via.placeholder.com/60x60', // 加载图片失败显示的图片
                       title: item.title,
                       url: `/article/${item.id}`
@@ -45,6 +44,10 @@
                 };
               })
               .catch(err=>console.log(err));
+          },
+          imgFilter(url){ // 解决图片防盗链问题
+            return url.replace(/http\w{0,1}:\/\/p/g,
+                  'https://images.weserv.nl/?url=p')
           }
         },
         components: {

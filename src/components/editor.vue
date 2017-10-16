@@ -3,7 +3,7 @@
       <group>
         <cell-box v-for="item in editors" is-link :link="item.url">
           <div slot="default">
-            <img class="header-img" :src="imgUrl(item.avatar)">
+            <img class="header-img" :src="item.avatar | url">
             <span>{{item.name}}</span>
           </div>
         </cell-box>
@@ -15,21 +15,12 @@
     export default {
         data() {
             return {
-                editors: [],
-                arr: [
-                    1,2,3
-                ]
+                editors: []
             }
         },
         created() {
             this.editors = JSON.parse(localStorage.getItem('editors'))
             console.log(this.editors)
-        },
-        methods: {
-            imgUrl(url){
-                return url.replace(/http\w{0,1}:\/\/p/g,
-                        'https://images.weserv.nl/?url=p')
-            }
         },
         components: {
             Group,

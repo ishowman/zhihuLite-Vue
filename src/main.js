@@ -10,7 +10,9 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 // 全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面
 // 解决知乎图片防盗链
-Vue.filter("url",url=>url.replace(/http\w{0,1}:\/\/p/g,'https://images.weserv.nl/?url=p'))
+Vue.filter("url",url => url.replace(
+  /http\w{0,1}:\/\/p/g,'https://images.weserv.nl/?url=p')
+)
 
 new Vue({
   el: '#app',
