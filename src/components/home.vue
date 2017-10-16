@@ -17,7 +17,7 @@
               newsList:[],
           }
       },
-      activated() {
+      created() {
         this.getData()
       },
       methods: {

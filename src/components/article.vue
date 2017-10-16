@@ -17,7 +17,7 @@
       watch:{
         '$route': 'getData'
       },
-      activated() {
+      created() {
           this.getData();
       },
       methods: {

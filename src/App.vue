@@ -9,9 +9,7 @@
         <li v-for="(item,index) in themeLists.others" @click="$router.push('/themeView/'+item.id)" v-on:click="ctrDrawer">{{item.name}}</li>
       </ul>
       <div slot="default">
-        <keep-alive exclude="news">
           <router-view></router-view>
-        </keep-alive>
       </div>
     </drawer>
   </div>

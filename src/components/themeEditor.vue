@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div @click="passData">
       <group>
         <cell-box is-link link="/editor">
           <div slot="default"  >
-            主编&nbsp;&nbsp;
-            <img class="header-img" v-for="item in editorList" :src="item.avatar | url">
-            <!--<img src="http://tva1.sinaimg.cn/crop.0.1.178.178.180/835c9af2gw1e8bqfmdv5xj205005074r.jpg" class="header-img"/>
-            <img src="https://images.weserv.nl/?url=pic2.zhimg.com/d3b31fa32_m.jpg" class="header-img"/>-->
+            主编
+            <img class="header-img" v-for="item in editors" 
+              :src="item.avatar | url"
+            >
           </div>
         </cell-box>
       </group>
@@ -17,16 +17,14 @@
     import { imgUrl } from '@/common/common'
     export default {
         props:[ 'editors' ],
-        data() {
-            return {
-                editorList : this.editors,
+        methods: {
+          passData() {
+            var arr = [];
+            for(var item of this.editors){
+              arr.push(item)
             }
-        },
-        activated() {
-//            console.log(this.editorList)
-        },
-        computed() {
-
+            localStorage.setItem('editors', JSON.stringify(arr));
+          }
         },
         components: {
           Group,
@@ -40,6 +38,7 @@
     height: 25px;
     vertical-align: middle;
     border-radius: 50%;
+    margin-left: 6px;
   }
   .weui-cells{
     margin-top: 0;
