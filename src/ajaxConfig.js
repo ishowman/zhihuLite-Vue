@@ -9,7 +9,7 @@ const okCode = '200' // 定义正常状态码
 Vue.prototype.ajax = axios // 把axios绑定到Vue的原型上，通过this.ajax即可调用axios
 axios.defaults.timeout = 5000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.baseURL = 'http://localhost'; // 配置请求根路径
+// axios.defaults.baseURL = 'http://localhost'; // 配置请求根路径
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {

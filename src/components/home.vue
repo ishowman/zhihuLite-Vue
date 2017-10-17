@@ -1,6 +1,6 @@
 <template>
     <div>
-      <swiper :list="imgList" dots-class="dots-m-b" :auto="boolean[0]" :loop="boolean[0]"></swiper>
+      <swiper :list="imgList" dots-class="dots-m-b" :auto="true"></swiper>
       <panel :list="newsList" type="1"></panel>
     </div>
 </template>
@@ -11,9 +11,7 @@
   export default {
       data() {
           return {
-              data: {},
               imgList:[],
-              boolean:[true,false],
               newsList:[],
           }
       },
@@ -24,7 +22,6 @@
         getData(){
           this.ajax('/api/news/latest')
             .then(res=>{
-                this.data={...res.data};
                 for(var item of res.data.top_stories){
                   this.imgList.push({
                       url: '/article/'+item.id ,
@@ -35,7 +32,7 @@
                 for(var item of res.data.stories){
                   this.newsList.push({
                     url: '/article/'+item.id ,
-                    src: imgUrl(item.images[0]) ,
+                    src: item.images[0]?imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
                     desc: item.title
                   })
                 };

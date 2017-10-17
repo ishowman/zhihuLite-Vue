@@ -13,8 +13,7 @@
           return {
               list: [],
               editors: [],
-              boolean:[true, false],
-              str: 'http://pic1.zhimg.com/0a6456810_m.jpg'
+              boolean:[true, false]
           }
         },
         watch:{
@@ -35,8 +34,8 @@
                 for(var item of res.data.stories){
                   this.list.push(
                     {
-                      src: item.images?this.imgFilter(item.images[0]):'http://via.placeholder.com/60x60', // 正常要展示的图
-                      fallbackSrc: 'http://via.placeholder.com/60x60', // 加载图片失败显示的图片
+                      src: item.images?this.imgFilter(item.images[0]):'http://via.placeholder.com/60x60?text=Vue', // 正常要展示的图
+                      // fallbackSrc: 'http://via.placeholder.com/50x50', // 加载图片失败显示的图片
                       title: item.title,
                       url: `/article/${item.id}`
                     }
