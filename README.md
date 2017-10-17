@@ -12,7 +12,7 @@ create by vue2.0+vuex+axios
 - [x] 图片链接处理方案不够优雅
 ```javascript
 // 解决方案：
-// 全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面
+// 全局方法 Vue.filter() 注册一个自定义过滤器,必须放在main.js中Vue根实例之前
 Vue.filter("url",url => url.replace(
   /http\w{0,1}:\/\/p/g,'https://images.weserv.nl/?url=p')
 )
