@@ -1,16 +1,14 @@
 <template>
     <scroller ref="scroller" height="-46" :lock-x="true" :use-pulldown="true" :pulldown-config="pulldown"  @on-pulldown-loading="refresh">
-
       <div id="themeView">
-        <!--<p>{{ str | url }}</p>-->
-        <cellbox :editors="editors"></cellbox>
+        <editors :editors="editors" @imgLoaded="hideAniamte"></editors>
         <panel :list="list" type="1"></panel>
       </div>
     </scroller>
 </template>
 <script>
     import { Panel, Scroller } from 'vux'
-    import cellbox from '@/components/themeEditor' // 引入后记得在components引入
+    import editors from '@/components/themeEditor'
     export default {
         data() {
           return {
@@ -20,16 +18,24 @@
           }
         },
         watch:{
-          // '$route'(to,from){
-          //   this.getData();
-          // },
-          '$route': 'getData'
+          '$route'(to,from){
+            this.getData();
+            this.$store.commit('updateLoadingStatus', {isLoading: true})
+            this.$nextTick(() => {
+                this.$refs.scroller.reset({
+                  top: 0
+                })
+                console.timeEnd()
+            })
+          },
+          // '$route': 'getData'
         },
         created() {
           this.getData();
         },
         methods: {
           getData() {
+            console.time()
             this.ajax.get('api/theme/'+this.$route.params.id)
               .then(res=>{
                 this.list = [];
@@ -43,8 +49,7 @@
                       url: `/article/${item.id}`
                     }
                   )
-                };
-                this.reset() // 每次切换主题，重新回到顶部
+                };     
               })
               .catch(err=>console.log(err));
           },
@@ -61,11 +66,17 @@
           },
           refresh() {
             this.getData()
+          },
+          hideAniamte(i, len) {
+            console.log(`${i}:${len}`)
+            if(i+1 === len){
+              this.$store.commit('updateLoadingStatus', {isLoading: false})
+            }
           }
         },
         components: {
           Panel,
-          cellbox,
+          editors,
           Scroller
         }
     }

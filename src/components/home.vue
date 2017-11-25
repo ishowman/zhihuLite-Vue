@@ -56,7 +56,7 @@
           });
         },
         loadMore() { // 上拉加载更多数据
-        // 最早有数据的日期：20130520
+          // 最早有数据的日期：20130520
           let lastDay = this.getLastDay();
           this.ajax('/api/news/before/'+lastDay)
             .then(res=>{

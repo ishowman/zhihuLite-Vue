@@ -4,8 +4,8 @@
         <cell-box is-link link="/editor">
           <div slot="default"  >
             主编
-            <img class="header-img" v-for="item in editors" 
-              :src="item.avatar | url"
+            <img class="avatar" v-for="(item, i) in editors" 
+              :src="item.avatar | url" :key="i" @load="loaded(i, editors.length)"
             >
           </div>
         </cell-box>
@@ -25,7 +25,9 @@
             }
             localStorage.setItem('editors', JSON.stringify(arr));
           },
-          
+          loaded(index, len) {
+            this.$emit('imgLoaded', index, len)
+          }
         },
         components: {
           Group,
@@ -34,7 +36,7 @@
     }
 </script>
 <style scoped>
-  .header-img{
+  .avatar{
     width: 25px;
     height: 25px;
     vertical-align: middle;

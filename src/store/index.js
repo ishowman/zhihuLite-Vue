@@ -17,7 +17,7 @@ store.registerModule('vux', { // 名字自己定义
       clsPrefix: 'xs-plugin-pulldown-'
     },
     pullup: {
-      content: 'content',
+      content: '',
       pullUpHeight: 60,
       height: 40,
       autoRefresh: false,

@@ -7,7 +7,7 @@ import article from '@/components/article'
 import comment from '@/components/comment'
 import editor from '@/components/editor' */
 Vue.use(Router)
-
+// 路由懒加载
 const home = () => import('@/components/home') 
 const themeView = () => import('@/components/themeView') 
 const article = () => import('@/components/article') 
@@ -46,24 +46,22 @@ const router = new Router({
     }
   ]
 })
-/* router.beforeEach((to, from, next) => {
-    // console.log('before: '+new Date().getTime())
-    // store.commit('updateLoadingStatus', {isLoading: true})
-    if(document.querySelector('#load')){
+router.beforeEach((to, from, next) => {
+    console.log('before: '+new Date().getTime())
+    store.commit('updateLoadingStatus', {isLoading: true})
+    /* if(document.querySelector('#load')){
       document.querySelector('#load').style.display = 'block'
-    }
+    } */
     next()
 } )
 router.afterEach((to, from) => {
-
-    setTimeout(function(){   //  延长过渡动画时间300ms
-      // store.commit('updateLoadingStatus', {isLoading: false})  
-      document.querySelector('#load').style.display = 'none'  
-      // console.log('after: '+new Date().getTime())  
-    }, 300)
-    
-  console.log('__________')
-}) */
+  console.log('after: '+new Date().getTime())  
+  store.commit('updateLoadingStatus', {isLoading: false})
+  /* setTimeout(function(){   //  延长过渡动画时间200ms
+      store.commit('updateLoadingStatus', {isLoading: false})
+    // document.querySelector('#load').style.display = 'none'  
+  }, 200) */
+})
 export default router
 
 
