@@ -47,6 +47,20 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
+  /* console.log(to)
+  console.log(from) */
+  if(to.name === 'article'){
+    // from.matched[0].components.default.data()
+    if(from.name === 'home' || from.name === 'themeView'){
+      let data = from.matched[0].instances.default.newsList,
+          ids = [];
+      for(let item of data){
+        ids.push(item.id)
+      }
+      store.commit('addIds', ids)
+      // return;   
+    }
+  }
     console.log('before: '+new Date().getTime())
     store.commit('updateLoadingStatus', {isLoading: true})
     /* if(document.querySelector('#load')){

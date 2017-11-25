@@ -32,16 +32,17 @@
             .then(res=>{
                 for(var item of res.data.top_stories){
                   this.slider.push({
-                      url: '/article/'+item.id ,
+                      url: `/article/${item.id}`,
                       img: imgUrl(item.image) ,
                       title: item.title
                   })
                 };
                 for(var item of res.data.stories){
                   this.newsList.push({
-                    url: '/article/' + item.id ,
+                    url: `/article/${item.id}` ,
                     src: item.images[0]? imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
-                    desc: item.title
+                    desc: item.title,
+                    id: item.id
                   })
                 };
             })

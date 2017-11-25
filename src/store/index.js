@@ -33,4 +33,15 @@ store.registerModule('vux', { // 名字自己定义
     }
   }
 })
+store.registerModule('app', { // 名字自己定义
+  state: {
+    ids: []
+  },
+  mutations: {
+    addIds (state, payload) {
+        state.ids = [].concat(payload)
+        console.log(state.ids)
+    }
+  }
+})
 export default store
