@@ -22,8 +22,8 @@
               title: '',
               like: false,
               // pageId: this.$route.params.id,
-              likeIds: this.$store.state.app.likes,
-              articleIds: this.$store.state.app.ids // 应该使用webStorage实现持续化储存
+              likeIds: this.$store.state.app.likes, // 这个数据应该放在数据库
+              articleIds: this.$store.state.app.ids // 应该使用webStorage实现数据持久化
           }
       },
       watch:{
@@ -68,8 +68,6 @@
    }
 </script>
 <style>
-  .red{color: red}
-  .blue{color: blue}
   @import url(//at.alicdn.com/t/font_569804_zajj9d4idvrhpvi.css);
   #article{ font:14px/22px '微软雅黑';position: absolute;overflow: auto;top: 0;bottom: 40px;left: 0;right: 0;padding: 0 3vw;}
   #article h1{margin: 20px 0;font: bold 20px/30px '微软雅黑';}
