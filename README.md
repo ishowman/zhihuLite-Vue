@@ -12,7 +12,8 @@
 - [ ] 切换日间夜间功能
 ## 待优化
 - [ ] 整体UI的优化
-- [ ] 主编组件localStorage方案改为vuex
+- [ ] 主编组件localStorage方案改为vuex( 使用webStorage数据持久化储存有点太重，考虑直接用api+数据库做数据交互 )
+- [ ] iconfont bug：收藏图标颜色不对
 - [ ] 首页下拉加载比较多文章时，滚动有时会感到卡顿
 
 # v0.2.1
