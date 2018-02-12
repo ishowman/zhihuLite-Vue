@@ -67,6 +67,9 @@
           },
           refresh() {
             this.getData()
+            this.$nextTick(() => {
+              this.$refs.scroller.donePulldown()
+            });
           },
           hideAniamte(i, len) {
             console.log(`${i}:${len}`)

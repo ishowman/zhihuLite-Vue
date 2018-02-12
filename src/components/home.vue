@@ -70,9 +70,11 @@
                 this.newsList.push({
                   url: '/article/' + item.id ,
                   src: item.images[0]? imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
-                  desc: item.title
+                  desc: item.title,
+                  id: item.id
                 })
               };
+              console.log(this.newsList)
             })
             .catch(err=>console.log(err));
           this.$nextTick(() => {

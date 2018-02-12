@@ -50,7 +50,6 @@ router.beforeEach((to, from, next) => {
   /* console.log(to)
   console.log(from) */
   if(to.name === 'article'){
-    // from.matched[0].components.default.data()
     if(from.name === 'home' || from.name === 'themeView'){
       let data = from.matched[0].instances.default.newsList,
           ids = [];
@@ -58,16 +57,15 @@ router.beforeEach((to, from, next) => {
         ids.push(item.id)
       }
       store.commit('addIds', ids)
-      // return;   
     }
   }
-    console.log('before: '+new Date().getTime())
-    store.commit('updateLoadingStatus', {isLoading: true})
-    /* if(document.querySelector('#load')){
-      document.querySelector('#load').style.display = 'block'
-    } */
-    next()
-} )
+  console.log('before: '+new Date().getTime())
+  store.commit('updateLoadingStatus', {isLoading: true})
+  /* if(document.querySelector('#load')){
+    document.querySelector('#load').style.display = 'block'
+  } */
+  next()
+})
 router.afterEach((to, from) => {
   console.log('after: '+new Date().getTime())  
   store.commit('updateLoadingStatus', {isLoading: false})

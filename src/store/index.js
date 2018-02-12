@@ -35,13 +35,18 @@ store.registerModule('vux', { // 名字自己定义
 })
 store.registerModule('app', { // 名字自己定义
   state: {
-    ids: []
+    ids: [],
+    likes: []
   },
   mutations: {
     addIds (state, payload) {
         state.ids = [].concat(payload)
         console.log(state.ids)
+    },
+    updateLikes (state, payload ) {
+      state.likes = [].concat(payload)
+      console.log(state.likes)
     }
   }
 })
-export default store
+export default store;

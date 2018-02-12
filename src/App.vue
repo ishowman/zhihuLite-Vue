@@ -8,7 +8,7 @@
       <ul slot="drawer" id="sideBar">
         <a href="https://github.com/ishowman/zhihuLite-Vue"><img src="./common/img/github.png" alt="github" width="50"></a>
         <li @click="$router.push('/home')"  v-on:click="ctrDrawer()">首页</li>
-        <li v-for="(item,index) in themeLists.others" 
+        <li v-for="(item, index) in themeLists.others" 
             @click="$router.push('/themeView/'+item.id); ctrDrawer()" 
             :key="item.id">{{item.name}}</li>
       </ul>
