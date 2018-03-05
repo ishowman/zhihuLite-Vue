@@ -6,7 +6,7 @@
     
     <drawer :show.sync="isShow" show-mode="overlay" style="height: calc(100% - 46px);">
       <ul slot="drawer" id="sideBar">
-        <a href="https://github.com/ishowman/zhihuLite-Vue"><img src="./common/img/github.png" alt="github" width="50"></a>
+        <a href="https://github.com/ishowman/zhihuLite-Vue"><img src="./common/img/github.webp" alt="github" width="50"></a>
         <li @click="$router.push('/home')"  v-on:click="ctrDrawer()">首页</li>
         <li v-for="(item, index) in themeLists.others" 
             @click="$router.push('/themeView/'+item.id); ctrDrawer()" 
