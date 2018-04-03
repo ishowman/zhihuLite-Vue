@@ -5,15 +5,17 @@
 # v0.3
 ## 完成
 - [x] 优化webpack打包速度及打包文件提交大小
+- [x] 抽离api接口
+- [x] 优化axios配置
+- [x] 使用更简洁的async/await语法代替Promise
 ## 待完成
-- [ ] 组件层面的懒加载
 - [ ] 使用 v-once 将缓存loading组件
 - [ ] 评论组件
 - [ ] 切换日间夜间功能
 ## 待优化
 - [ ] 整体UI的优化
 - [ ] 主编组件localStorage方案改为vuex( 使用webStorage数据持久化储存有点太重，考虑直接用api+数据库做数据交互 )
-- [ ] iconfont bug：收藏图标颜色不对
+- [ ] iconfont官方bug：图标颜色不对
 - [ ] 首页下拉加载比较多文章时，滚动有时会感到卡顿
 
 # v0.2.2
