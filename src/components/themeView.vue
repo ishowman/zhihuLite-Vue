@@ -9,6 +9,7 @@
 <script>
     import { Panel, Scroller } from 'vux'
     import editors from '@/components/themeEditor'
+    import {getNewsByTheme} from '@/common/api/newsList'
     export default {
         data() {
           return {
@@ -34,25 +35,23 @@
           this.getData();
         },
         methods: {
-          getData() {
+          async getData() {
             console.time()
-            this.ajax.get('api/theme/'+this.$route.params.id)
-              .then(res=>{
-                this.newsList = [];
-                this.editors = res.data.editors;
-                for(var item of res.data.stories){
-                  this.newsList.push(
-                    {
-                      src: item.images?this.imgFilter(item.images[0]):'http://via.placeholder.com/60x60?text=Vue', // 正常要展示的图
-                      // fallbackSrc: 'http://via.placeholder.com/50x50', // 加载图片失败显示的图片
-                      title: item.title,
-                      url: `/article/${item.id}`,
-                      id: item.id
-                    }
-                  )
-                };     
-              })
-              .catch(err=>console.log(err));
+            let data = await getNewsByTheme(this.$route.params.id)
+            this.newsList = [];
+            this.editors = data.editors;
+            for(var item of data.stories){
+              this.newsList.push(
+                {
+                  src: item.images?this.imgFilter(item.images[0]):'http://via.placeholder.com/60x60?text=Vue', // 正常要展示的图
+                  // fallbackSrc: 'http://via.placeholder.com/50x50', // 加载图片失败显示的图片
+                  title: item.title,
+                  url: `/article/${item.id}`,
+                  id: item.id
+                }
+              )
+            };     
+
           },
           imgFilter(url){ // 解决图片防盗链问题
             return url.replace(/http\w{0,1}:\/\/p/g,

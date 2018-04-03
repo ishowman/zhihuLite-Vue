@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import {getNewsText, getNewsComment} from '@/common/api/article'
   export default {
       data() {
           return {
@@ -21,28 +22,27 @@
               content: '',
               title: '',
               like: false,
-              // pageId: this.$route.params.id,
               likeIds: this.$store.state.app.likes, // 这个数据应该放在数据库
               articleIds: this.$store.state.app.ids // 应该使用webStorage实现数据持久化
           }
       },
       watch:{
-        '$route': 'getData'
+        '$route': 'getContent'
       },
       created() {        
-        this.getData();
+        this.getContent()
       },
       methods: {
-          getData(){
+          async getContent(){
             this.like = this.likeIds.indexOf(this.$route.params.id) < 0? false : true  // 先查询是否收藏
-            this.ajax.get('api/news/' + this.$route.params.id)
-              .then(res => {
-                this.content = res.data.body.replace(/src=\"http:\/\/pic/g, "src=\"https://images.weserv.nl/?url=pic")
-                this.title = res.data.title
-              })
-              .catch(err=>console.log(err));
-            // this.ajax.get('api/story-extra/' + this.pageId)
-            //   .then(res => this.comment = {...res.data})
+            let data = await getNewsText(this.$route.params.id)
+            this.content = data.body.replace(/src=\"http:\/\/pic/g, "src=\"https://images.weserv.nl/?url=pic")
+            this.title = data.title
+
+          },
+          async getComment(){
+            let data = await getNewsComment(this.$route.params.id)
+            this.comment = {...data}
           },
           switchArticle(mode) {
             let index = this.articleIds.findIndex((val, i, arr) => val == this.$route.params.id ) + mode
@@ -61,7 +61,6 @@
             }else{
               this.likeIds.push(this.$route.params.id)
             }
-            console.log(this.likeIds)
             this.like = !this.like
           }
       }

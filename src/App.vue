@@ -29,7 +29,7 @@
               <text text-anchor="middle" x="50%" y="50%" class="text text-4">
                   正 在 加 载 ing
               </text>
-          </svg> 
+            </svg> 
           </div>
           <router-view></router-view>
       </div>
@@ -40,6 +40,7 @@
 <script>
   import { XHeader,Drawer,Cell, Spinner  } from 'vux'
   import { mapState } from 'vuex'
+  import {getThemeSorts} from '@/common/api/base'
   export default {
     name: 'app',
     data() {
@@ -53,7 +54,10 @@
       ctrDrawer() {
         this.isShow = !this.isShow;
       },
-      
+      async getThemesData() {
+        let data = await getThemeSorts()
+        this.themeLists = {...data}
+      }
     },
     computed: {
       ...mapState({
@@ -61,13 +65,7 @@
       })
     },
     created() {
-      this.ajax.get('api/themes')
-        .then(res => {
-          this.themeLists = {...res.data}
-        })
-        .catch(err=>console.log(err));
-
-        
+      this.getThemesData()
     },
     components: {
       XHeader,

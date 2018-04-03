@@ -4,9 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import store from '@/store'
 import router from './router'
-import axios from '@/common/ajaxConf'
-
-Vue.use(axios)
+// import axios from '@/common/ajaxConf'
+import { ToastPlugin } from 'vux'
+Vue.use(ToastPlugin)
+// Vue.use(axios)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

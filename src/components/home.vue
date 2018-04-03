@@ -11,6 +11,7 @@
 <script>
   import { Swiper,Panel, Scroller } from 'vux'
   import { imgUrl } from '@/common/common'
+  import {getLatestNews, getNewsByDate} from '@/common/api/newsList'
   export default {
       data() {
           return {
@@ -27,26 +28,25 @@
         this.getData()
       },
       methods: {
-        getData(){
-          this.ajax('/api/news/latest')
-            .then(res=>{
-                for(var item of res.data.top_stories){
-                  this.slider.push({
-                      url: `/article/${item.id}`,
-                      img: imgUrl(item.image) ,
-                      title: item.title
-                  })
-                };
-                for(var item of res.data.stories){
-                  this.newsList.push({
-                    url: `/article/${item.id}` ,
-                    src: item.images[0]? imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
-                    desc: item.title,
-                    id: item.id
-                  })
-                };
+        async getData(){
+          let data = await getLatestNews()
+          console.log('data', data)
+          for(var item of data.top_stories){
+            this.slider.push({
+                url: `/article/${item.id}`,
+                img: imgUrl(item.image) ,
+                title: item.title
             })
-            .catch(err=>console.log(err))
+          };
+          for(var item of data.stories){
+            this.newsList.push({
+              url: `/article/${item.id}` ,
+              src: item.images[0]? imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
+              desc: item.title,
+              id: item.id
+            })
+          };
+          
         },
         update() { // 下拉刷新：获取最新的数据，不同于刷新页面会销毁和重新加载路由
           this.slider = [],
@@ -56,27 +56,25 @@
             this.$refs.scroller.donePulldown()
           });
         },
-        loadMore() { // 上拉加载更多数据
+        async loadMore() { // 上拉加载更多数据
           // 最早有数据的日期：20130520
           let lastDay = this.getLastDay();
-          this.ajax('/api/news/before/'+lastDay)
-            .then(res=>{
-              if(!res.data.stories){
-                // 这里提示下没有数据
-                this.$refs.scroller.disablePullup()
-                return;
-              }
-              for(var item of res.data.stories){
-                this.newsList.push({
-                  url: '/article/' + item.id ,
-                  src: item.images[0]? imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
-                  desc: item.title,
-                  id: item.id
-                })
-              };
-              console.log(this.newsList)
+          let data = await getNewsByDate(lastDay);
+
+          if(!data.stories){
+            // 这里提示下没有数据
+            this.$refs.scroller.disablePullup()
+            return;
+          }
+          for(var item of data.stories){
+            this.newsList.push({
+              url: '/article/' + item.id ,
+              src: item.images[0]? imgUrl(item.images[0]):'http://via.placeholder.com/60x60?text=Vue',
+              desc: item.title,
+              id: item.id
             })
-            .catch(err=>console.log(err));
+          };
+            
           this.$nextTick(() => {
           // 更新视图后，将date替换为上次获取数据的日期
             this.date = this.date - 1000*60*60*24
