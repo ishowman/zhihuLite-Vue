@@ -13,7 +13,9 @@ const themeView = () => import('@/components/themeView')
 const article = () => import('@/components/article') 
 const comment = () => import('@/components/comment') 
 const editor = () => import('@/components/editor') 
+const NotFoundComponent = () => import('@/components/404')
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -43,7 +45,8 @@ const router = new Router({
       path:'/editor',
       name:'editor',
       component:editor
-    }
+    },
+    { path: '*', component: NotFoundComponent }
   ]
 })
 router.beforeEach((to, from, next) => {

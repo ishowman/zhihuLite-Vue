@@ -1,7 +1,7 @@
 <template>
-    <scroller ref="scroller" height="-46" :lock-x="true" :use-pulldown="true" :pulldown-config="pulldown" @on-pulldown-loading="update"
+    <scroller ref="scroller" height="-46" lock-x use-pulldown :pulldown-config="pulldown" @on-pulldown-loading="update"
       :use-pullup="true" :pullup-config="pullup" @on-pullup-loading="loadMore">
-      <div>
+      <div id="home">
         <swiper :list="slider" dots-class="dots-m-b" :auto="true" :loop="true"></swiper>
         <panel :list="newsList" type="1"></panel>
       </div>
@@ -98,7 +98,8 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+  .weui-panel{margin-top: 0;}
   .vux-img{background-position: center;background-size: 100% 100%;}
-  .dots-m-b{bottom:0px!important;}
+  .dots-m-b{bottom:0px;}
 </style>

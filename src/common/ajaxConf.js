@@ -5,12 +5,8 @@ import qs from 'qs'
 // 配置请求的基本参数
 const Axios = axios.create({
   timeout: 5000, // 配置请求超时
-  responseType: 'json',
-  headers: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-  },
+  baseURL: '/'
 })
-
 // 配置请求拦截器
 Axios.interceptors.request.use( config => {
   // 特定请求方法，请求前序列化参数
@@ -25,9 +21,9 @@ Axios.interceptors.request.use( config => {
 Axios.interceptors.response.use( res => {
   return res.data
 }, err => {
-  console.log('resErr', err) // 如接口404
+  console.log('resErr', err) // 状态码4xx，如接口404
   Vue.$vux.toast.show({
-    text: '网络好像出问题了',
+    text: '服务器被玩坏了',
     type: 'cancel',
     width: '10em'
   })

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="editor">
       <group>
         <cell-box v-for="(item, i) in editors" is-link :link="item.url" :key="i">
           <div slot="default">
@@ -28,15 +28,13 @@
         }
     }
 </script>
-<style scoped>
+<style  lang="less">
     .header-img{
         width: 40px;
         height: 40px;
         vertical-align: middle;
         border-radius: 50%;
         margin-right: 10px;
-    }    
-    /* .m-t--20{
-        margin-top: -20px;
-    } */
+    }   
+    
 </style>

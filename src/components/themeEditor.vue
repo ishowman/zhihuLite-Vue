@@ -1,6 +1,7 @@
 <template>
-    <div @click="passData">
-      <group>
+    <div @click="passData" id="themeEditor">
+
+      <group class="g">
         <cell-box is-link link="/editor">
           <div slot="default"  >
             主编
@@ -35,18 +36,15 @@
         }
     }
 </script>
-<style scoped>
+<style lang="less" scoped> 
+  #themeEditor /deep/ .weui-cells{
+    margin-top: 0;
+  }
   .avatar{
     width: 25px;
     height: 25px;
     vertical-align: middle;
     border-radius: 50%;
     margin-left: 6px;
-  }
-  .weui-cells{
-    margin-top: 0;
-  }
-  .vux-no-group-title{
-    margin-top: 0;
   }
 </style>
