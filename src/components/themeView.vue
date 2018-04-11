@@ -1,6 +1,5 @@
 <template>
     <scroller ref="scroller" height="-46" :lock-x="true" :use-pulldown="true" :pulldown-config="pulldown"  @on-pulldown-loading="refresh">
-            <p class="red">isRed</p>
       <div id="themeView">
         <editors :editors="editors" @imgLoaded="hideAniamte"></editors>
         <panel :list="newsList" type="1"></panel>

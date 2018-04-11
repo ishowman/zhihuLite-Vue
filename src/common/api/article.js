@@ -1,4 +1,4 @@
-import {Axios} from '@/common/ajaxConf'
+import {Axios} from './apiConf'
 
 /**
  * 删除分类

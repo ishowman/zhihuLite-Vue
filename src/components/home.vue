@@ -30,7 +30,6 @@
       methods: {
         async getData(){
           let data = await getLatestNews()
-          console.log('data', data)
           for(var item of data.top_stories){
             this.slider.push({
                 url: `/article/${item.id}`,

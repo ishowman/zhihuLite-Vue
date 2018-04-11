@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import axios  from 'axios'
 import qs from 'qs'
+const config = require('../../../config')
+
+console.log('config', process.env.NODE_ENV)
+
+const baseURL = process.env.NODE_ENV === 'production'? '/':'/'
 
 // 配置请求的基本参数
 const Axios = axios.create({
   timeout: 5000, // 配置请求超时
-  baseURL: '/'
+  baseURL
 })
 // 配置请求拦截器
 Axios.interceptors.request.use( config => {

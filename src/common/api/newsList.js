@@ -1,5 +1,5 @@
 
-import {Axios} from '@/common/ajaxConf'
+import {Axios} from './apiConf'
 
 /**
  * 获取最新新闻
