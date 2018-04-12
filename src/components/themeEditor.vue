@@ -1,7 +1,7 @@
 <template>
-    <div @click="passData" id="themeEditor">
+    <div @click="passData">
 
-      <group class="g">
+      <group>
         <cell-box is-link link="/editor">
           <div slot="default"  >
             主编
@@ -37,7 +37,7 @@
     }
 </script>
 <style lang="less" scoped> 
-  #themeEditor /deep/ .weui-cells{
+  /deep/ .weui-cells{
     margin-top: 0;
   }
   .avatar{
